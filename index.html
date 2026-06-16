@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catherine's Glow Studio</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<style>
+.beauty-effects{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 99999;
+}
+
+.beauty-effects span{
+  position: absolute;
+  top: -80px;
+  font-size: 28px;
+  opacity: 0;
+  animation: caerBelleza 8s linear infinite;
+}
+
+.beauty-effects span:nth-child(1){ left: 8%; animation-delay: 0s; }
+.beauty-effects span:nth-child(2){ left: 20%; animation-delay: 1s; }
+.beauty-effects span:nth-child(3){ left: 35%; animation-delay: 2s; }
+.beauty-effects span:nth-child(4){ left: 50%; animation-delay: 3s; }
+.beauty-effects span:nth-child(5){ left: 65%; animation-delay: 4s; }
+.beauty-effects span:nth-child(6){ left: 80%; animation-delay: 5s; }
+.beauty-effects span:nth-child(7){ left: 92%; animation-delay: 6s; }
+
+@keyframes caerBelleza{
+  0%{
+    transform: translateY(-80px) rotate(0deg);
+    opacity: 0;
+  }
+  10%{
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+
+<div class="beauty-effects">
+  <span>✨</span>
+  <span>🌸</span>
+  <span>💖</span>
+  <span>🌷</span>
+  <span>💕</span>
+  <span>🌺</span>
+  <span>✨</span>
+</div>
+
+<header class="header">
+<div class="logo">
+  <span class="crown">👑</span>
+  <div>
+    <div class="logo-top">CATHERINE'S</div>
+    <div class="logo-line"></div>
+    <div class="logo-bottom">GLOW STUDIO</div>
+  </div>
+</div>
+
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/servicios/">Servicios</a>
+    <a href="/tienda/">Tienda</a>
+    <a href="/citas/">Agendar Cita</a>
+    <a href="/registro/">Registro</a>
+    <a href="/carrito/">Carrito</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-tag">Belleza • Cuidado • Estilo</p>
+
+<h1 class="titulo-modelo">
+  RESALTA
+  <span>TU BELLEZA</span>
+</h1>
+
+    <p>
+      Vive una experiencia única con nuestros servicios profesionales de belleza,
+      cuidado facial, maquillaje, cabello y uñas.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="/citas/" class="btn">Agendar cita</a>
+      <a href="/servicios/" class="btn-outline">Ver servicios</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">
+    <h2>Servicios <span>Destacados</span></h2>
+    <a href="/servicios/">Ver todos</a>
+  </div>
+
+  <p class="subtitle">Cuida tu imagen con nuestros servicios profesionales.</p>
+
+  <div class="cards">
+    <div class="card">
+      <img src="{% static 'img/maquillaje.jpg' %}" alt="Maquillaje">
+      <div class="card-icon">💄</div>
+      <h3>Maquillaje</h3>
+      <p>Realza tu belleza natural para eventos especiales.</p>
+      <a href="/citas/" class="btn">Reservar</a>
+    </div>
+
+    <div class="card">
+      <img src="{% static 'img/cabello.jpg' %}" alt="Cabello">
+      <div class="card-icon">💇‍♀️</div>
+      <h3>Cabello</h3>
+      <p>Cortes, tintes, hidratación y tratamientos capilares.</p>
+      <a href="/citas/" class="btn">Reservar</a>
+    </div>
+
+    <div class="card">
+      <img src="{% static 'img/unas.jpg' %}" alt="Uñas">
+      <div class="card-icon">💅</div>
+      <h3>Uñas</h3>
+      <p>Manicure, pedicure y diseños personalizados.</p>
+      <a href="/citas/" class="btn">Reservar</a>
+    </div>
+
+    <div class="card">
+      <img src="{% static 'img/facial.jpg' %}" alt="Facial">
+      <div class="card-icon">🌸</div>
+      <h3>Tratamientos Faciales</h3>
+      <p>Cuida tu piel profundamente con limpieza e hidratación.</p>
+      <a href="/citas/" class="btn">Reservar</a>
+    </div>
+  </div>
+</section>
+
+<section class="section products-section">
+  <div class="section-title">
+    <h2>Productos <span>Destacados</span></h2>
+    <a href="/tienda/">Ver todos</a>
+  </div>
+
+  <p class="subtitle">Productos seleccionados para tu cuidado diario.</p>
+
+  <div class="cards">
+    {% for producto in productos %}
+    <div class="card product-card">
+      <img src="{% static 'img/' %}{{ producto.imagen }}" alt="{{ producto.nombre }}">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <span class="price">${{ producto.precio }}</span>
+      <a href="/tienda/" class="btn">Comprar</a>
+    </div>
+    {% empty %}
+    <p>No hay productos registrados todavía.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="features">
+  <div>🌸 <strong>Productos de calidad</strong></div>
+  <div>👤 <strong>Atención personalizada</strong></div>
+  <div>📅 <strong>Reserva fácil y rápida</strong></div>
+  <div>🔒 <strong>Pagos seguros</strong></div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div>
+      <h3>Catherine's Glow Studio</h3>
+      <p>Tu belleza es nuestra pasión. Descubre nuestros servicios y productos.</p>
+    </div>
+
+    <div>
+      <h3>Contáctanos</h3>
+      <p>📍 Av. Principal 123, Riobamba</p>
+      <p>📞 098 574 7836</p>
+      <p>✉ info@catherinesglow.com</p>
+    </div>
+
+    <div>
+      <h3>Síguenos</h3>
+      <p class="socials">Facebook · Instagram · TikTok · WhatsApp</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>
